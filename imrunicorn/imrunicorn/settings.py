@@ -22,9 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'hmj=u6w0i830gw=k^l&vc*jsl!mvtx8#r%#con#lvz04aordkg'
 
-if socket.gethostname().startswith('nifi') \
-        or socket.gethostname().startswith('Thermaltake') \
-        or socket.gethostname().startswith('svenMacBook'):
+if socket.gethostname().startswith('Kevins-MacBook-Pro'):
     DEBUG = True
     IS_PRODUCTION = not DEBUG
 else:
@@ -84,25 +82,23 @@ WSGI_APPLICATION = 'imrunicorn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if socket.gethostname().startswith('svenMacBook')\
-        or socket.gethostname().startswith('Thermaltake'):
+if socket.gethostname().startswith('Kevins-MacBook-Pro'):
     DATABASES = {
-         'default': {
-             'ENGINE': 'django.db.backends.sqlite3',
-             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-         },
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        },
     }
 else:
     DATABASES = {
-         'default': {
+        'default': {
             'ENGINE': 'django.db.backends.mysql',
             'OPTIONS': {
                 'read_default_file': '/opt/loaddata.cnf',
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             },
-         }
+        }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
